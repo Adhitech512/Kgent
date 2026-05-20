@@ -1,9 +1,9 @@
-# Kgent: Multi-Agent AI Orchestration Protocol — Design Document
+# Kgent: Multi-Agent AI Orchestration Protocol — Design Document (Beta 0.10)
 
 ## 1. Overall Architecture
 Kgent is designed as a distributed, scalable orchestration platform rather than a monolithic chatbot wrapper. The architecture consists of several core components:
 - **Core Orchestrator Engine (The Runtime):** Manages the lifecycle of workspaces, sessions, and agents. It handles the initial request, breaks it down, and assigns a Leader Agent.
-- **Provider Abstraction Layer (Adapter System):** A uniform API layer that normalizes requests to OpenAI, Anthropic, Gemini, DeepSeek, and local open-source models.
+- **Provider Abstraction Layer (Adapter System):** A uniform API layer that normalizes requests to OpenAI, Anthropic, Gemini, DeepSeek, Ollama, and other local open-source models.
 - **Agent Mesh Network:** The interconnected web of active agents working within a session. This includes the Leader Agent and Specialized Agents.
 - **Multi-Layer Memory Engine:** The hierarchical data storage system (Personal, Link, Group, Global).
 - **Tool Execution Sandbox:** An isolated, secure environment where agents execute tools (web search, CLI, code execution).
@@ -31,6 +31,7 @@ Agents do not just append to a single massive context window. They communicate v
 
 ## 5. Role Orchestration Logic
 - **Dynamic Profiling:** At the start of a workspace, the orchestrator queries all attached API keys/models.
+- **Single Model Fallback:** If only one model is connected to the workspace, Kgent automatically degrades gracefully into a standard, single AI agent assistant, avoiding unnecessary orchestration overhead.
 - **Assignment:** The Leader evaluates the Objective DAG. It maps required skills (e.g., "needs strong Python skills + large context window") to available models.
 - **Auto-Balancing:** If one agent is blocked or rate-limited, the Leader can dynamically reassign a replica of that role to another model.
 
@@ -66,9 +67,10 @@ Agents do not just append to a single massive context window. They communicate v
 ## 12. Recommended Tech Stack
 - **Backend/Core Engine:** Rust or Go (for high concurrency, low latency, and efficient memory management). Node.js/TypeScript is an alternative for rapid iteration.
 - **Database (Memory Engine):**
-  - Vector: Qdrant, Milvus, or Pinecone.
-  - Relational/State: PostgreSQL.
-  - Caching/PubSub: Redis.
+  - To maintain absolute privacy and avoid connectivity issues, the system relies on fully offline, local databases.
+  - Vector: Local Qdrant or ChromaDB.
+  - Relational/State: SQLite or local PostgreSQL.
+  - Caching/PubSub: Local Redis instance.
 - **Frontend (Web UI):** Next.js (React), Tailwind CSS, React Flow (for DAG/graph visualization).
 - **Sandboxing:** Firecracker microVMs or Docker Engine API.
 
@@ -119,8 +121,9 @@ Agents do not just append to a single massive context window. They communicate v
 - *Solution:* Implement strict "Timeout" and "Human-in-the-Loop" escalation triggers.
 
 ### Cost Optimization Strategies
+- **Smart Context System:** If multiple messages from different parts of the system need to go to the same AI model, Kgent batches them using a structured JSON context payload. This drastically reduces redundant token generation and API calls.
 - **Hierarchical Routing:** Leader models (expensive) only do planning and reviewing. Execution is handled by cheaper models.
-- **Local Fallback:** Use local open-source models for summarizing memory or formatting data to save API tokens.
+- **Local Fallback:** Use local open-source models (like Ollama) for summarizing memory or formatting data to save API tokens.
 - **Aggressive Caching:** Store common architectural patterns or repeated tool outputs.
 
 ### Making Kgent Fundamentally Better Than Current Frameworks (AutoGPT, CrewAI, etc.)
