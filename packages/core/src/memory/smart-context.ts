@@ -13,7 +13,11 @@ export class SmartContextSystem {
   }
 
   flush(modelId: string): string {
-    const payload = JSON.stringify(this.batchedMessages[modelId] || []);
+    const batched = this.batchedMessages[modelId] || [];
+    if (batched.length === 0) return '';
+
+    // Group context natively into a compact JSON string to reduce prompt token size
+    const payload = JSON.stringify({ context_batch: batched });
     this.batchedMessages[modelId] = [];
     return payload;
   }

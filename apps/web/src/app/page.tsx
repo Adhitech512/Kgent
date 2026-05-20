@@ -1,101 +1,77 @@
-import Image from "next/image";
+import React from 'react';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="min-h-screen bg-gray-900 text-white p-8">
+      <header className="mb-12 border-b border-gray-700 pb-6">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          Kgent Orchestration Dashboard
+        </h1>
+        <p className="text-gray-400 mt-2">Beta 0.10 Runtime Monitor</p>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        {/* Workspace Config */}
+        <section className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-xl">
+          <h2 className="text-xl font-semibold mb-4 text-blue-300">Active Workspace</h2>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-400">Current Objective</p>
+              <div className="bg-gray-900 p-3 rounded mt-1 text-sm border border-gray-700">
+                Waiting for task dispatch...
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">Connected Providers</p>
+              <ul className="mt-2 space-y-2">
+                <li className="flex items-center space-x-2 text-sm bg-gray-700 p-2 rounded">
+                  <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                  <span>Ollama (llama3) @ http://127.0.0.1:11434</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Agent Mesh Network */}
+        <section className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-xl lg:col-span-2">
+          <h2 className="text-xl font-semibold mb-4 text-purple-300">Agent Mesh Network</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div className="bg-gray-900 p-4 rounded border border-blue-900/50">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-medium text-blue-400">Leader Agent</h3>
+                <span className="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded">Idle</span>
+              </div>
+              <p className="text-xs text-gray-500">Decomposes objectives and assigns sub-tasks.</p>
+            </div>
+
+            <div className="bg-gray-900 p-4 rounded border border-purple-900/50 opacity-50">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-medium text-purple-400">Worker Agent (Engineer)</h3>
+                <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Offline</span>
+              </div>
+              <p className="text-xs text-gray-500">Awaiting multi-model provider configuration.</p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Offline Memory Engine Log */}
+        <section className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-xl lg:col-span-3">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold text-green-300">Offline Memory Engine Logs</h2>
+            <span className="text-xs bg-green-900 text-green-200 px-2 py-1 rounded">better-sqlite3 active</span>
+          </div>
+          <div className="bg-gray-900 p-4 rounded font-mono text-sm text-gray-300 h-48 overflow-y-auto border border-gray-700 space-y-2">
+            <p className="text-green-400">[System] Initialized Fully Offline Local Database Wrapper at kgent.db</p>
+            <p className="text-blue-400">[System] Kgent Orchestrator Initialized (Beta 0.10)</p>
+            <p className="text-gray-500">Listening for memory sync events...</p>
+          </div>
+        </section>
+
+      </div>
+    </main>
   );
 }
