@@ -13,17 +13,14 @@ This repository contains the monorepo for the Kgent Core runtime, CLI, and Web i
 - Node.js (v20+)
 - An active Ollama instance running (locally or remotely).
 
-## Building the Monorepo
-
-The codebase uses npm workspaces.
+## Building the Package
 
 ```bash
-# Install dependencies across all workspaces
+# Install dependencies
 npm install
 
-# Build the Core and CLI packages
-cd packages/core && npm run build
-cd ../cli && npm run build
+# Build the Core and CLI code
+npm run build
 ```
 
 ## Running the Web UI
@@ -39,10 +36,10 @@ You can use the Kgent CLI to execute tasks directly from your terminal. By defau
 
 ```bash
 # Run a task using the default Ollama API url and default model (llama3)
-node packages/cli/dist/index.js task "Write a python script to calculate fibonacci numbers."
+node dist/cli/index.js task "Write a python script to calculate fibonacci numbers."
 
 # Change the Ollama API Base URL and specify a different model
-node packages/cli/dist/index.js task "Summarize quantum computing" --ollama-url "http://192.168.1.100:11434" --ollama-model "mistral"
+node dist/cli/index.js task "Summarize quantum computing" --ollama-url "http://192.168.1.100:11434" --ollama-model "mistral"
 ```
 
 ### Note on Publishing
