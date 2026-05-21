@@ -1,10 +1,10 @@
-import Database from 'better-sqlite3';
+import { DatabaseSync } from 'node:sqlite';
 
 export class OfflineDatabase {
-  private db: Database.Database;
+  private db: DatabaseSync;
 
   constructor(dbPath: string = 'kgent.db') {
-    this.db = new Database(dbPath);
+    this.db = new DatabaseSync(dbPath);
     console.log(`Initialized Fully Offline Local Database Wrapper at ${dbPath}`);
     this.initTables();
   }

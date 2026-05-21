@@ -2,6 +2,11 @@
   "name": "kgent",
   "version": "0.10.0",
   "description": "Next-Generation Multi-Agent AI Orchestration Protocol",
+  "files": [
+    "dist",
+    "README.md",
+    "KGENT_DESIGN.md"
+  ],
   "main": "dist/core/index.js",
   "types": "dist/core/index.d.ts",
   "bin": {
@@ -12,17 +17,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "better-sqlite3": "^11.0.0",
     "commander": "^12.1.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "ollama": "^0.5.1"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.19.19",
     "typescript": "^5.4.5"
   }
 }
