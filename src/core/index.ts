@@ -24,7 +24,7 @@ export class Orchestrator {
     this.smartContext = new SmartContextSystem();
     this.db = new OfflineDatabase();
 
-    console.log("Kgent Orchestrator Initialized (Beta 0.10)");
+    console.log("Kgent Orchestrator Initialized (Beta 0.10.2)");
   }
 
   // Dynamically assign roles based on available providers

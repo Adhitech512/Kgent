@@ -1,9 +1,9 @@
-# Kgent (Beta 0.10)
+# Kgent (Beta 0.10.2)
 
 Kgent is a Next-Generation Multi-Agent AI Orchestration Protocol designed for robust, local-first intelligence.
 This repository contains the monorepo for the Kgent Core runtime, CLI, and Web interfaces.
 
-## Features (Beta 0.10)
+## Features (Beta 0.10.2)
 - **Ollama Provider Support**: Seamlessly connect to your local Ollama instance via its REST API.
 - **Single-Model Fallback**: Don't want a complex mesh? If you only configure one provider, Kgent gracefully steps down to act as a standard AI agent to save tokens and latency.
 - **Smart Context System**: Reduces API costs by intelligently batching JSON payloads when different parts of the system interact with the same model.

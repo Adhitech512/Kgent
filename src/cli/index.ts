@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name('kgent')
   .description('CLI to manage Kgent AI orchestration')
-  .version('0.10.0');
+  .version('0.10.2');
 
 import { startServer } from '../server';
 
