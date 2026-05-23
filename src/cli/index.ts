@@ -13,9 +13,9 @@ program
 import { startServer } from '../server';
 
 program.command('start')
-  .description('Start the Kgent backend daemon')
+  .description('Start the Kgent daemon and web UI')
   .action(() => {
-    console.log('Starting Kgent backend daemon...');
+    console.log('Starting Kgent services...');
     startServer();
   });
 

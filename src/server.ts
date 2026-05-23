@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import { Orchestrator, OllamaProvider } from './core';
 
 const app = express();
@@ -53,8 +54,20 @@ app.get('/api/status', (req, res) => {
   });
 });
 
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, 'public')));
+// Fallback for SPA routing
+app.use((req, res, next) => {
+  if (req.method === 'GET' && req.accepts('html')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    next();
+  }
+});
+
 export const startServer = () => {
   app.listen(port, () => {
     console.log(`[Kgent Daemon] Backend server listening on port ${port}`);
+    console.log(`[Kgent Web UI] Accessible at http://localhost:${port}`);
   });
 };

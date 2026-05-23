@@ -13,7 +13,7 @@
     "kgent": "./dist/cli/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cd apps/web && npm install && npm run build && cd ../.. && cp -r apps/web/out dist/public",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
