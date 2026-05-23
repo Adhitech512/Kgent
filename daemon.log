@@ -1,5 +1,5 @@
 Starting Kgent services...
-(node:441831) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(node:471105) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 [Kgent Daemon] Backend server listening on port 4000
 [Kgent Web UI] Accessible at http://localhost:4000
