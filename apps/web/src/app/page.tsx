@@ -15,7 +15,7 @@ export default function Home() {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/status');
+      const res = await fetch('/api/status');
       const data = await res.json();
       setStatus(data);
     } catch {
@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   const handleInit = async (models: string[]) => {
-    await fetch('http://localhost:4000/api/init', {
+    await fetch('/api/init', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ models })
@@ -36,7 +36,7 @@ export default function Home() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch('http://localhost:4000/api/task', {
+      const res = await fetch('/api/task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ task })

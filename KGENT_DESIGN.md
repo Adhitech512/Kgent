@@ -1,4 +1,4 @@
-# Kgent: Multi-Agent AI Orchestration Protocol — Design Document (Beta 0.10)
+# Kgent: Multi-Agent AI Orchestration Protocol — Design Document (Beta 0.10.3)
 
 ## 1. Overall Architecture
 Kgent is designed as a distributed, scalable orchestration platform rather than a monolithic chatbot wrapper. The architecture consists of several core components:
